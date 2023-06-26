@@ -48,7 +48,9 @@ public class Perintah {
     // atau di ubah? 
     public String lakukan(String inputPerintah){
         String[] in = inputPerintah.split(" ");
-        if (in[0].equalsIgnoreCase("maju"))
+        if (in[0].equalsIgnoreCase("reset"))
+            kurakuraku.reset();
+        else if (in[0].equalsIgnoreCase("maju"))
             kurakuraku.maju(Integer.parseInt(in[1]));
         else if (in[0].equalsIgnoreCase("mundur"))
                 kurakuraku.mundur(Integer.parseInt(in[1]));

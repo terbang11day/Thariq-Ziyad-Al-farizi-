@@ -79,6 +79,7 @@ public class MainFrame extends javax.swing.JFrame {
         input.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputActionPerformed(evt);
+                input.setText("");
             }
         });
         input.addFocusListener(new java.awt.event.FocusAdapter() {

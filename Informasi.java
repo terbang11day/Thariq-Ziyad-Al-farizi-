@@ -42,7 +42,7 @@ public class Informasi extends javax.swing.JDialog {
         labelTitle.setText("Kura-kuraku");
 
         labelInformasi.setFont(new java.awt.Font("Book Antiqua", 0, 14));
-        labelInformasi.setText("Penjelasan Tugas 1 DPBO 2008");
+        labelInformasi.setText("Penjelasan Tugas DDP2 2023");
 
         textInformasi.setColumns(20);
         textInformasi.setLineWrap(true);

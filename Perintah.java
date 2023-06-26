@@ -48,7 +48,9 @@ public class Perintah {
     // atau di ubah? 
     public String lakukan(String inputPerintah){
         String[] in = inputPerintah.split(" ");
-        if (in[0].equalsIgnoreCase("reset"))
+        if (in[0].equalsIgnoreCase("selesai"))
+            System.exit(0);
+        else if (in[0].equalsIgnoreCase("reset"))
             kurakuraku.reset();
         else if (in[0].equalsIgnoreCase("maju"))
             kurakuraku.maju(Integer.parseInt(in[1]));
@@ -58,6 +60,8 @@ public class Perintah {
                 kurakuraku.rotasi(Integer.parseInt(in[1]));
         else if (in[0].equalsIgnoreCase("kotak"))
                 buatKotak(Integer.parseInt(in[1]));
+        else if (in[0].equalsIgnoreCase("segitiga"))
+                buatSegitiga(Integer.parseInt(in[1]));
         else if (in[0].equalsIgnoreCase("pohon"))
                 buatPohon();        
         else if (in[0].equalsIgnoreCase("jejak"))
@@ -77,6 +81,10 @@ public class Perintah {
             kurakuraku.maju(ukuran);
             kurakuraku.rotasi(90);
         }
+    }
+    public void buatSegitiga(int ukuran){
+        // TODO: Lengkapi isi method ini agar kura-kura bisa membuat segitiga sama sisi
+
     }        
     
     public void buatPohon(){        

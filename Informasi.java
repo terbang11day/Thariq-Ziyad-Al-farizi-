@@ -38,10 +38,10 @@ public class Informasi extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        labelTitle.setFont(new java.awt.Font("Bradley Hand ITC", 0, 18));
+        labelTitle.setFont(new java.awt.Font("Serif", 0, 18));
         labelTitle.setText("Kura-kuraku");
 
-        labelInformasi.setFont(new java.awt.Font("Book Antiqua", 0, 14));
+        labelInformasi.setFont(new java.awt.Font("Serif", 0, 14));
         labelInformasi.setText("Penjelasan Tugas DDP2 2023");
 
         textInformasi.setColumns(20);

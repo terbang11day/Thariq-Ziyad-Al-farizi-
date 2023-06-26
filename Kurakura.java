@@ -134,9 +134,9 @@ public class Kurakura {
     
     /** 
      * Accessor method: 
-     * Mengambil informasi posisi kurakura
+     * Mengambil informasi posisi kurakura dilayar
      * 
-     * @return informasi posisi kurakura dalam object {@code Dimension}
+     * @return informasi posisi kurakura saat ini dalam object {@code Dimension}
      *  
      */
     public Dimension getPosition(){

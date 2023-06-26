@@ -45,7 +45,7 @@ public class MainFrame extends javax.swing.JFrame {
         status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Kura-kuraku");
+        setTitle("Kura-kuraku oleh: <Tulis nama Anda>");
         setMinimumSize(new java.awt.Dimension(450, 455));
         setResizable(false);
         getContentPane().setLayout(null);

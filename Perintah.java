@@ -60,8 +60,12 @@ public class Perintah {
                 kurakuraku.rotasi(Integer.parseInt(in[1]));
         else if (in[0].equalsIgnoreCase("kotak"))
                 buatKotak(Integer.parseInt(in[1]));
+        else if (in[0].equalsIgnoreCase("persegi"))
+                buatPersegi(Integer.parseInt(in[1]),Integer.parseInt(in[2]));   
         else if (in[0].equalsIgnoreCase("segitiga"))
                 buatSegitiga(Integer.parseInt(in[1]));
+        else if (in[0].equalsIgnoreCase("segitigasiku"))
+                buatSegitigasiku(Integer.parseInt(in[1]),Integer.parseInt(in[2]));  
         else if (in[0].equalsIgnoreCase("pohon"))
                 buatPohon();        
         else if (in[0].equalsIgnoreCase("jejak"))
@@ -82,10 +86,33 @@ public class Perintah {
             kurakuraku.rotasi(90);
         }
     }
-    public void buatSegitiga(int ukuran){
-        // TODO: Lengkapi isi method ini agar kura-kura bisa membuat segitiga sama sisi
 
-    }        
+    public void buatPersegi(int ukuran,int lebar ){        
+        for (int i=0;i<2;i++){
+            kurakuraku.maju(ukuran);
+            kurakuraku.rotasi(90);
+            kurakuraku.maju(lebar);
+            kurakuraku.rotasi(90);
+        }
+    }
+
+    public void buatSegitiga(int ukuran){
+            kurakuraku.maju(ukuran);
+            kurakuraku.rotasi(90);
+    }   
+    
+
+    public void buatSegitigasiku(int alas,int tinggi){
+            double pyth = (alas*alas) + (tinggi*tinggi);
+            double miring = Math.sqrt(pyth);
+            double sudut = Math.toDegrees(Math.atan (alas / tinggi))-180;
+            kurakuraku.maju(alas);
+            kurakuraku.rotasi(90);
+            kurakuraku.maju(tinggi);
+            kurakuraku.rotasi(sudut);
+            kurakuraku.maju(miring);
+
+    }   
     
     public void buatPohon(){        
         kurakuraku.setJejak(false);

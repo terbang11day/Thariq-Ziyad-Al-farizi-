@@ -86,30 +86,32 @@ public class Perintah {
             kurakuraku.rotasi(90);
         }
     }
-
-    public void buatPersegi(int ukuran,int lebar ){        
+// membuat persegi
+    public void buatPersegi(int panjang,int lebar ){        
         for (int i=0;i<2;i++){
-            kurakuraku.maju(ukuran);
+            kurakuraku.maju(panjang);
             kurakuraku.rotasi(90);
             kurakuraku.maju(lebar);
             kurakuraku.rotasi(90);
         }
     }
-
+// membuat segitiga
     public void buatSegitiga(int ukuran){
+        for(int i=0;i<3;i++){  
             kurakuraku.maju(ukuran);
-            kurakuraku.rotasi(90);
+            kurakuraku.rotasi(180-60);
     }   
+    }
     
-
+// membuat segitiga siku
     public void buatSegitigasiku(int alas,int tinggi){
             double pyth = (alas*alas) + (tinggi*tinggi);
             double miring = Math.sqrt(pyth);
-            double sudut = Math.toDegrees(Math.atan (alas / tinggi))-180;
+            double sudut = Math.toDegrees(Math.atan ((double)(alas / tinggi))); // menyari nilai rotasi 
             kurakuraku.maju(alas);
             kurakuraku.rotasi(90);
             kurakuraku.maju(tinggi);
-            kurakuraku.rotasi(sudut);
+            kurakuraku.rotasi(180-sudut);
             kurakuraku.maju(miring);
 
     }   
@@ -120,7 +122,7 @@ public class Perintah {
         kurakuraku.rotasi(90);
         kurakuraku.maju(100);
         kurakuraku.rotasi(180);
-        buatPohon(6,50);        
+        buatPohon(5,50);        
         kurakuraku.reset();
     }
     
@@ -132,13 +134,20 @@ public class Perintah {
             Dimension posAwal = kurakuraku.getPosition();
             double arah = kurakuraku.getArah();
             double sudut = arah;
-            for(int i=0;i<3;i++){  
+            for(int i=0;i<3;i++){
+                if (ukuran == 1){ // membuat kotak-kotak di ujung pohon
+                    kurakuraku.setPosition(posAwal);
+                    buatKotak(5);
+                }  
                 buatPohon(ukuran-1,(int)(tinggi/1.5));
                 kurakuraku.setJejak(false);
                 kurakuraku.setPosition(posAwal);
                 kurakuraku.setArah(arah);                
                 sudut+=45;
                 kurakuraku.rotasi(sudut);  
+                
+                
+                
             }     
         }
         kurakuraku.reset();

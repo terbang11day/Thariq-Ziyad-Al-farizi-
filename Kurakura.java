@@ -97,7 +97,7 @@ public class Kurakura {
         y += dy;
         matTrans.setToTranslation(x,y);
     }
-    
+    // membuat methood mundur
     public void mundur(double jarak){
         double dx,dy;
         dx = -jarak * Math.cos(arah);

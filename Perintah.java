@@ -67,11 +67,11 @@ public class Perintah {
         else if (in[0].equalsIgnoreCase("segitiga"))
                 buatSegitiga(Integer.parseInt(in[1]));
         else if (in[0].equalsIgnoreCase("sierpinski"))
-                buatsierpinski(Integer.parseInt(in[1]));
+                buatsierpinski();
         else if (in[0].equalsIgnoreCase("segitigasiku"))
                 buatSegitigasiku(Integer.parseInt(in[1]),Integer.parseInt(in[2]));  
         else if (in[0].equalsIgnoreCase("pohon"))
-                buatPohon();        
+                buatPohon();       
         else if (in[0].equalsIgnoreCase("jejak"))
                 kurakuraku.setJejak(Boolean.parseBoolean(in[1]));
         else if (in[0].equalsIgnoreCase("pindah"))
@@ -130,30 +130,78 @@ public class Perintah {
         }
     }
 
+
+
+
 /*membuat segitiga sama kaki
  *melakukan looping sesuai sisi segitiga 
  *melakukan rotasi sesuai sudut segitiga
  */
-    public void buatSegitiga(int ukuran){
+    public void buatSegitiga(double ukuran){
         for(int i=0;i<3;i++){  
             kurakuraku.maju(ukuran);
             kurakuraku.rotasi(-180+60);
     }   
     }
+/**
+ * membuat sierpinski
+ * buat segitiga dengan ukuran 100
+ * kemudian maju setengah dari 100
+ * kemudian memanggil methood sierpinski rekursif
+*/
+    public void buatsierpinski(){
+        buatSegitiga(100);
+        kurakuraku.maju(50);
+        buatsierpinskirekursif(50);
+    }
+/**
+ * methood rekursif sierpinski
+ * base case untuk seberapa banyak bentuk yang akan dibuat
+ * menghilangkan jejak untuk perpindahan
+ * rotasi sebanyak -60* 
+ * mangaktifkan jejak 
+ * segitiga akan terbentuk secara terbalik dengan ukuran setengah
+ * mematikan jejak
+ * rotasi 60* sehingga kura kura sejajar dengan garis
+ * menyimpan koordinat
+ * kura kura maju dengan jarak setengah dari ukuran
+ * memanggil rekursif 
+ * setting kura kura ada koordinat yang ditentukan tadi  (bila kondisi rekursif sudah tidak memenuhi)
+ * kura kura mundur setengah dari ukuran untuk memnuhi posisi segitiga kiri
+ * setting koordinat (bila kondisi rekursif diatasny tidak terpenuhi lagi)
+ * rotasi -60* 
+ * maju sesuai panjang ukuran
+ * rotasis 120*
+ * maju setengah dari ukuran
+ * rotasi 180* sehingga kura kura sejajar dengan garis
+ * memanggil rekursif untuk membuat bagian atas
+ * singkatnya alur program adalah membuat segtitiga di kanan, kemudian kiri dan yang terkhir atas sampai basecase terpenuhi
+ * @ukuran ukuran
+ */
 
-    public void buatsierpinski(int ukuran){
-        if (ukuran>=2){
+    public void buatsierpinskirekursif(double ukuran){
+        if (ukuran>10){
+            kurakuraku.setJejak(false);
+            kurakuraku.rotasi(-60);
+            kurakuraku.setJejak(true);
             buatSegitiga(ukuran);
-            buatSegitiga(ukuran/2);
             kurakuraku.setJejak(false);
+            kurakuraku.rotasi(60);
+            Dimension pos = kurakuraku.getPosition();
             kurakuraku.maju(ukuran/2);
-            kurakuraku.setJejak(false);
-            buatsierpinski(ukuran/2);
-
-
+            buatsierpinskirekursif(ukuran/2); // rekursif kanan
+            kurakuraku.setPosition(pos);
+            kurakuraku.mundur(ukuran/2);
+            buatsierpinskirekursif(ukuran/2); // rekursif kiri
+            kurakuraku.setPosition(pos);
+            kurakuraku.rotasi(-60);
+            kurakuraku.maju(ukuran);
+            kurakuraku.rotasi(-120);
+            kurakuraku.maju(ukuran/2);
+            kurakuraku.rotasi(180);
+            buatsierpinskirekursif(ukuran/2); // rekursif atas
         }
     }
-    
 /*
  * meminta niali alas dan tinggi
  * mencari sisi miring dengan pitagoras
@@ -187,7 +235,7 @@ public class Perintah {
  /*membuat pohon
   */    
     private void buatPohon(int ukuran, int tinggi){
-        if (ukuran>0){
+        if (ukuran>0){  
             kurakuraku.setJejak(true);
             kurakuraku.maju(tinggi);                        
             kurakuraku.rotasi(-45);

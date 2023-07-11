@@ -71,7 +71,9 @@ public class Perintah {
         else if (in[0].equalsIgnoreCase("segitigasiku"))
                 buatSegitigasiku(Integer.parseInt(in[1]),Integer.parseInt(in[2]));  
         else if (in[0].equalsIgnoreCase("pohon"))
-                buatPohon();       
+                buatPohon();   
+        else if (in[0].equalsIgnoreCase("ketupat"))
+                buatketupat();       
         else if (in[0].equalsIgnoreCase("jejak"))
                 kurakuraku.setJejak(Boolean.parseBoolean(in[1]));
         else if (in[0].equalsIgnoreCase("pindah"))
@@ -130,6 +132,41 @@ public class Perintah {
         }
     }
 
+/**
+ * sett posisi awal ketupat
+ * memanggil methood buat ketupan dengan 
+ */
+    public void buatketupat(){
+        buatketupat(4, 50);
+    }
+
+/**
+ * mirip seperti membuat pohon
+ * diubah nilai perputaran sudur sebesar +/-90* sehingga mendapatkan 4 seisi dalam pesegi
+ * 
+ * @param ukuran
+ * @param tinggi
+ */
+    private void buatketupat(int ukuran, int tinggi){
+        if (ukuran>0){  
+            kurakuraku.setJejak(true);
+            kurakuraku.maju(tinggi);                        
+            kurakuraku.rotasi(-90);
+            Dimension posAwal = kurakuraku.getPosition();
+            double arah = kurakuraku.getArah();
+            double sudut = arah;
+            for(int i=0;i<4;i++){
+                buatketupat(ukuran-1,(int)(tinggi/1.5));
+                kurakuraku.setJejak(false);
+                kurakuraku.setPosition(posAwal);
+                kurakuraku.setArah(arah);                
+                sudut+=90;
+                kurakuraku.rotasi(sudut);  
+                
+            }     
+        }
+  
+    }
 
 
 

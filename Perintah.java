@@ -61,9 +61,13 @@ public class Perintah {
         else if (in[0].equalsIgnoreCase("kotak"))
                 buatKotak(Integer.parseInt(in[1]));
         else if (in[0].equalsIgnoreCase("persegi"))
-                buatPersegi(Integer.parseInt(in[1]),Integer.parseInt(in[2]));   
+                buatPersegi(Integer.parseInt(in[1]),Integer.parseInt(in[2])); 
+        else if (in[0].equalsIgnoreCase("boxes"))
+                boxes(Integer.parseInt(in[1]));  
         else if (in[0].equalsIgnoreCase("segitiga"))
                 buatSegitiga(Integer.parseInt(in[1]));
+        else if (in[0].equalsIgnoreCase("sierpinski"))
+                buatsierpinski(Integer.parseInt(in[1]));
         else if (in[0].equalsIgnoreCase("segitigasiku"))
                 buatSegitigasiku(Integer.parseInt(in[1]),Integer.parseInt(in[2]));  
         else if (in[0].equalsIgnoreCase("pohon"))
@@ -72,6 +76,7 @@ public class Perintah {
                 kurakuraku.setJejak(Boolean.parseBoolean(in[1]));
         else if (in[0].equalsIgnoreCase("pindah"))
                 kurakuraku.setPosition(new Dimension(Integer.parseInt(in[1]),Integer.parseInt(in[2])));
+
         else{
                 canvas.repaint(); 
                 return "Perintah tidak dipahami.";
@@ -86,7 +91,13 @@ public class Perintah {
             kurakuraku.rotasi(90);
         }
     }
-// membuat persegi
+/*
+ * looping sebanyak 2 kali dengan nilai i yang terus bertambah
+ * kura kura maju sesuai panjang
+ * kura kura melakukan rotasi 90 derajat
+ * kura kura maju sesuai panjang 
+ * kura kura melakukan rotasi 90
+ */
     public void buatPersegi(int panjang,int lebar ){        
         for (int i=0;i<2;i++){
             kurakuraku.maju(panjang);
@@ -95,22 +106,70 @@ public class Perintah {
             kurakuraku.rotasi(90);
         }
     }
-// membuat segitiga
+/*buat boxes secara rekursif
+ * base case ukuran lebih besar dari 0
+ * memanggil methood buat kotak dengan ukuran yang dimasukan
+ * menghilangkan jejak kura kura
+ * melakukan perpindah kura kura
+ * maju sejauh 10
+ * rotasi 90 derajat
+ * maju sejauh 10
+ * rotasi -90 sehingga kura kura menghadap kedepan 
+ * memanggil methood boxes dengan nilai ukuran yang dikurangi 20
+ */
+    public void boxes(int ukuran){
+        if (ukuran >= 0) {
+            buatKotak(ukuran);
+            kurakuraku.setJejak(false);
+            kurakuraku.maju(10);
+            kurakuraku.rotasi(90);
+            kurakuraku.maju(10);
+            kurakuraku.rotasi(-90);
+            kurakuraku.setJejak(true);
+            boxes(ukuran-20);      
+        }
+    }
+
+/*membuat segitiga sama kaki
+ *melakukan looping sesuai sisi segitiga 
+ *melakukan rotasi sesuai sudut segitiga
+ */
     public void buatSegitiga(int ukuran){
         for(int i=0;i<3;i++){  
             kurakuraku.maju(ukuran);
-            kurakuraku.rotasi(180-60);
+            kurakuraku.rotasi(-180+60);
     }   
     }
+
+    public void buatsierpinski(int ukuran){
+        if (ukuran>=2){
+            buatSegitiga(ukuran);
+            buatSegitiga(ukuran/2);
+            kurakuraku.setJejak(false);
+            kurakuraku.maju(ukuran/2);
+            kurakuraku.setJejak(false);
+            buatsierpinski(ukuran/2);
+
+
+        }
+    }
     
-// membuat segitiga siku
+/*
+ * meminta niali alas dan tinggi
+ * mencari sisi miring dengan pitagoras
+ * kura kura maju sesau dengan panjang alas
+ * kura kura rotasi 90 derajat
+ * kura kura naik sesuai tinggi
+ * kura kura berotasi sesuai besar sudut
+ * kura kura maju seusai nilai dari kemiringan
+ */
     public void buatSegitigasiku(int alas,int tinggi){
             double pyth = (alas*alas) + (tinggi*tinggi);
             double miring = Math.sqrt(pyth);
-            double sudut = Math.toDegrees(Math.atan ((double)(alas / tinggi))); // menyari nilai rotasi 
-            kurakuraku.maju(alas);
-            kurakuraku.rotasi(90);
+            double sudut = Math.toDegrees(Math.atan ((double)(alas / tinggi))); // menyari nilai rotasi cos
             kurakuraku.maju(tinggi);
+            kurakuraku.rotasi(90);
+            kurakuraku.maju(alas);
             kurakuraku.rotasi(180-sudut);
             kurakuraku.maju(miring);
 
@@ -122,10 +181,11 @@ public class Perintah {
         kurakuraku.rotasi(90);
         kurakuraku.maju(100);
         kurakuraku.rotasi(180);
-        buatPohon(5,50);        
+        buatPohon(6,50);        
         kurakuraku.reset();
     }
-    
+ /*membuat pohon
+  */    
     private void buatPohon(int ukuran, int tinggi){
         if (ukuran>0){
             kurakuraku.setJejak(true);

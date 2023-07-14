@@ -81,7 +81,7 @@ public class Perintah {
 
         else{
                 canvas.repaint(); 
-                return "Perintah tidak dipahami.";
+                return "Perintah tidak dipahamiads.";
             }
         canvas.repaint();    
         return "Perintah sudah dilaksanakan.";
@@ -187,7 +187,7 @@ public class Perintah {
  * kemudian memanggil methood sierpinski rekursif
 */
     public void buatsierpinski(){
-        buatSegitiga(100);
+        buatSegitiga(200);
         kurakuraku.maju(50);
         buatsierpinskirekursif(50);
     }
